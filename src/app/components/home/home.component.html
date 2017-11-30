@@ -1,0 +1,76 @@
+<div class="container">
+  <form>
+    <div class="col-md-6">
+      <h2>Register</h2>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" [(ngModel)]="person.email" class="form-control" id="email" placeholder="Enter email" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" [(ngModel)]="person.password" class="form-control" id="pwd" placeholder="Enter password" [ngModelOptions]="{standalone: true}" >
+      </div>
+      <button [disabled]="!person.email || !person.password" type="submit" (click)="register()" class="btn btn-primary">Submit</button>
+    </div>
+    <div class="col-md-6">
+      <h2>Login</h2>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" [(ngModel)]="user.email" class="form-control" id="email" placeholder="Enter email" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" [(ngModel)]="user.password" class="form-control" id="pwd" placeholder="Enter password" [ngModelOptions]="{standalone: true}" >
+      </div>
+      <button [disabled]="!user.email || !user.password" type="submit" (click)="login()" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <h2>Registered    Users</h2>
+  <div *ngFor="let u of users;let i=index;">
+    <div>
+      <label>{{u.name}}</label>
+      <button class="btn btn-sm btn-danger" (click)="delete(i)">delete</button>
+      <button class="btn btn-sm btn-success"  data-toggle="modal" data-target="#myModal" (click)="edit(u,i)">Update</button>
+     </div>
+  </div>
+</div>
+
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Update</h4>
+          </div>
+          <div class="modal-body">
+              <form>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="email">Email:</label>
+                      <input type="email" [(ngModel)]="user.name" class="form-control" id="email" placeholder="Enter email" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                      <label for="pwd">Password:</label>
+                      <input type="text" [(ngModel)]="user.password" class="form-control" id="pwd" placeholder="Enter password" [ngModelOptions]="{standalone: true}" >
+                    </div>
+                  </div>
+                </form>
+          </div>
+          <div class="modal-footer">
+              <button  type="button" [disabled]="!user.name || !user.password" type="submit" (click)="update()" data-dismiss="modal" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+
